@@ -1,0 +1,18 @@
+IMAGE_NAME := image1
+CONTAINER_NAME := container1
+
+build:
+    docker build -t $(IMAGE_NAME) .
+
+run:
+    docker run -d --name $(CONTAINER_NAME) -p 5000:5000 $(IMAGE_NAME)
+
+stop:
+    docker stop $(CONTAINER_NAME)
+
+remove:
+    docker rm $(CONTAINER_NAME)
+
+clean: stop remove
+
+.PHONY: build run stop remove clean

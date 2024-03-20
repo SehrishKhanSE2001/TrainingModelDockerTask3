@@ -1,0 +1,21 @@
+# Use a base Python image with TensorFlow and Keras installed
+FROM tensorflow/tensorflow:latest
+
+# Set working directory in the container
+WORKDIR /app
+
+# Copy the code files into the container
+COPY TrainingModel /app
+
+# Install additional dependencies
+RUN apt-get update && apt-get install -y \
+    python3-opencv
+
+# Install Python dependencies
+RUN pip install numpy matplotlib seaborn scikit-learn keras
+
+# Expose any necessary ports (if needed)
+# EXPOSE 5000
+
+# Command to run your script
+CMD ["python", "training.py"]
