@@ -14,8 +14,8 @@ RUN apt-get update && apt-get install -y \
 # Install Python dependencies
 RUN pip install numpy matplotlib seaborn scikit-learn keras
 
-# Expose any necessary ports (if needed)
-# EXPOSE 5000
+# Expose any necessary ports 
+EXPOSE 5000
 
 # Command to run your script
 CMD ["python", "training.py"]
