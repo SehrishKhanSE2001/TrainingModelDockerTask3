@@ -5,17 +5,19 @@ FROM tensorflow/tensorflow:latest
 WORKDIR /app
 
 # Copy the code files into the container
-COPY TrainingModel /app
+COPY fashion_mnist_cnn_model.h5 /app
+COPY app.py /app
+COPY Dockerfile /app
 
 # Install additional dependencies
 RUN apt-get update && apt-get install -y \
     python3-opencv
 
 # Install Python dependencies
-RUN pip install numpy matplotlib seaborn scikit-learn keras
+RUN pip install numpy matplotlib seaborn scikit-learn keras flask gevent opencv-python
 
 # Expose any necessary ports 
 EXPOSE 5000
 
 # Command to run your script
-CMD ["python", "training.py"]
+CMD ["python", "app.py"]
